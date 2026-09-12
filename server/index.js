@@ -12,6 +12,7 @@ const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 // Middleware
 app.use(cors());
@@ -895,8 +896,8 @@ async function startServer() {
   }
   
   if (!module.parent) {
-    app.listen(PORT, () => {
-      console.log(`\n🚀 Buy or Wait Solution running on http://localhost:${PORT}`);
+    app.listen(PORT, HOST, () => {
+      console.log(`\n🚀 Buy or Wait Solution running on http://${HOST || 'localhost'}:${PORT}`);
       console.log(`📊 API available at http://localhost:${PORT}/api`);
       console.log(`📈 Dashboard: http://localhost:${PORT}/dashboard`);
       console.log(`📋 Requests: http://localhost:${PORT}/requests`);
