@@ -103,20 +103,45 @@
           <!-- Stats cards will be rendered here -->
         </div>
         
+        <!-- Graphical Mode Controls -->
+        <div class="graphical-controls">
+          <span class="graphical-label">Visualization Mode:</span>
+          <button class="graphical-mode-btn active" data-mode="charts">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Multi-Chart
+          </button>
+          <button class="graphical-mode-btn" data-mode="donut">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Donut Focus
+          </button>
+          <button class="graphical-mode-btn" data-mode="bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            Bar Comparison
+          </button>
+          <button class="graphical-mode-btn" data-mode="line">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Trend Line
+          </button>
+          <button class="graphical-mode-btn" data-mode="heatmap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            User Heatmap
+          </button>
+        </div>
+        
+        <!-- Charts Row 1 -->
         <div class="charts-row">
-          <div class="chart-card">
+          <div class="chart-card" id="chart-card-donut">
             <div class="chart-header">
               <h3>Affordability Distribution</h3>
-              <span class="chart-type">Donut</span>
+              <div class="chart-legend" id="donutLegend"></div>
             </div>
             <div class="chart-container">
               <canvas id="affordabilityChart"></canvas>
             </div>
           </div>
-          <div class="chart-card">
+          <div class="chart-card" id="chart-card-payment">
             <div class="chart-header">
-              <h3>Payment Method Recommendations</h3>
-              <span class="chart-type">Bar</span>
+              <h3>Payment Method Breakdown</h3>
             </div>
             <div class="chart-container">
               <canvas id="paymentMethodChart"></canvas>
@@ -124,23 +149,45 @@
           </div>
         </div>
         
-        <div class="charts-row">
-          <div class="chart-card">
+        <!-- Charts Row 2 -->
+        <div class="charts-row" id="row2">
+          <div class="chart-card" id="chart-card-currency">
             <div class="chart-header">
               <h3>Safe Amount by Currency</h3>
-              <span class="chart-type">Bar</span>
             </div>
             <div class="chart-container">
               <canvas id="currencyChart"></canvas>
             </div>
           </div>
-          <div class="chart-card">
+          <div class="chart-card" id="chart-card-category">
             <div class="chart-header">
-              <h3>User-wise Analysis</h3>
-              <span class="chart-type">Horizontal Bar</span>
+              <h3>Requests by Category</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="categoryChart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Charts Row 3 - Trend/Heatmap -->
+        <div class="charts-row" id="row3" style="display: none;">
+          <div class="chart-card chart-card-lg">
+            <div class="chart-header">
+              <h3>Trend Analysis Over Time</h3>
             </div>
             <div class="chart-container chart-container-lg">
-              <canvas id="userChart"></canvas>
+              <canvas id="trendChart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="charts-row" id="row4" style="display: none;">
+          <div class="chart-card chart-card-xl">
+            <div class="chart-header">
+              <h3>User-wise Analysis (Heatmap)</h3>
+            </div>
+            <div class="chart-container chart-container-xl">
+              <canvas id="heatmapChart"></canvas>
             </div>
           </div>
         </div>

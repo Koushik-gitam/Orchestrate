@@ -1,14 +1,17 @@
 // Buy or Wait - Frontend JavaScript
+// Graphical Mode with Multiple Visualization Options
 
 class BuyOrWaitApp {
   constructor() {
     this.currentPage = 'dashboard';
+    this.currentView = 'overview'; // 'overview', 'detailed', 'comparison'
     this.requests = [];
     this.analysis = [];
     this.stats = null;
     this.charts = {};
     this.sortConfig = { key: null, direction: 'asc' };
-    this.filterConfig = { status: 'all', method: 'all', search: '' };
+    this.filterConfig = { status: 'all', method: 'all', search: '', category: 'all' };
+    this.graphicalMode = 'charts'; // 'charts', 'donut', 'bar', 'line', 'heatmap'
     
     this.init();
   }
@@ -45,11 +48,13 @@ class BuyOrWaitApp {
     document.getElementById('filterStatus').addEventListener('change', (e) => {
       this.filterConfig.status = e.target.value;
       this.renderRequestsTable();
+      this.updateCharts();
     });
     
     document.getElementById('filterMethod').addEventListener('change', (e) => {
       this.filterConfig.method = e.target.value;
       this.renderRequestsTable();
+      this.updateCharts();
     });
     
     document.getElementById('analysisSearch').addEventListener('input', (e) => {
@@ -83,6 +88,24 @@ class BuyOrWaitApp {
     document.getElementById('navToggle').addEventListener('click', () => {
       document.querySelector('.sidebar').classList.toggle('open');
     });
+    
+    // Graphical mode toggle
+    const modeToggles = document.querySelectorAll('.graphical-mode-btn');
+    modeToggles.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const mode = btn.dataset.mode;
+        this.setGraphicalMode(mode);
+      });
+    });
+    
+    // View toggle
+    const viewToggles = document.querySelectorAll('.view-toggle');
+    viewToggles.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const view = btn.dataset.view;
+        this.setView(view);
+      });
+    });
   }
   
   // Navigation
@@ -103,6 +126,22 @@ class BuyOrWaitApp {
     if (this.requests.length > 0) {
       this.renderCurrentPage();
     }
+  }
+  
+  setGraphicalMode(mode) {
+    this.graphicalMode = mode;
+    document.querySelectorAll('.graphical-mode-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode);
+    });
+    this.updateCharts();
+  }
+  
+  setView(view) {
+    this.currentView = view;
+    document.querySelectorAll('.view-toggle').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === view);
+    });
+    this.renderDashboard();
   }
   
   renderCurrentPage() {
@@ -138,11 +177,11 @@ class BuyOrWaitApp {
       
       if (result.success) {
         // Wait for data to be processed
-        await new Promise(resolve => setTimeout(resolve, 300));
-        this.fetchRequests();
-        this.fetchStats();
-        this.updateStatus('online', 'Connected');
-        this.showToast('Data loaded successfully', 'success');
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await this.fetchRequests();
+        await this.fetchStats();
+        this.updateStatus('online', `${result.count} requests loaded`);
+        this.showToast(`Loaded ${result.count} requests, ${result.profiles} profiles`, 'success');
       } else {
         throw new Error('Failed to load data');
       }
@@ -150,8 +189,8 @@ class BuyOrWaitApp {
       console.error('Error loading data:', error);
       // Load from API directly
       await new Promise(resolve => setTimeout(resolve, 300));
-      this.fetchRequests();
-      this.fetchStats();
+      await this.fetchRequests();
+      await this.fetchStats();
       this.updateStatus('online', 'Using API');
     }
   }
@@ -175,6 +214,7 @@ class BuyOrWaitApp {
       this.stats = data.stats;
       this.userBreakdown = data.userBreakdown;
       this.currencyStats = data.currencyStats;
+      this.categoryStats = data.categoryStats;
       this.currencies = data.currencies;
       this.renderDashboard();
     } catch (error) {
@@ -214,11 +254,19 @@ class BuyOrWaitApp {
     }, 4000);
   }
   
-  // Dashboard Rendering
+  // Dashboard Rendering with Graphical Modes
   renderDashboard() {
     if (!this.stats) return;
     
     const statsGrid = document.getElementById('statsGrid');
+    
+    // Format large numbers for display
+    const fmt = (num) => {
+      if (num >= 10000000) return (num / 10000000).toFixed(1) + 'Cr';
+      if (num >= 100000) return (num / 100000).toFixed(1) + 'L';
+      if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+      return num.toFixed(0);
+    };
     
     const statCards = [
       {
@@ -226,58 +274,66 @@ class BuyOrWaitApp {
         value: this.stats.totalRequests,
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
         iconClass: 'primary',
-        cardClass: 'primary-bg'
+        cardClass: 'primary-bg',
+        gradient: 'linear-gradient(135deg, #6366f1, #4f46e5)'
       },
       {
         title: 'Affordable Now',
         value: this.stats.affordableNow,
+        pct: this.stats.totalRequests > 0 ? ((this.stats.affordableNow / this.stats.totalRequests) * 100).toFixed(1) : 0,
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>',
         iconClass: 'success',
         cardClass: 'affordable',
-        trend: `+${this.stats.affordableNow * 100 / this.stats.totalRequests || 0}% of total`
+        gradient: 'linear-gradient(135deg, #10b981, #059669)'
       },
       {
         title: 'With Plan',
         value: this.stats.affordableWithPlan,
+        pct: this.stats.totalRequests > 0 ? ((this.stats.affordableWithPlan / this.stats.totalRequests) * 100).toFixed(1) : 0,
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>',
         iconClass: 'warning',
         cardClass: 'with-plan',
-        trend: 'Requires planning'
+        gradient: 'linear-gradient(135deg, #f59e0b, #d97706)'
       },
       {
         title: 'Affordable Later',
         value: this.stats.affordableLater,
+        pct: this.stats.totalRequests > 0 ? ((this.stats.affordableLater / this.stats.totalRequests) * 100).toFixed(1) : 0,
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
         iconClass: 'info',
         cardClass: 'later',
-        trend: 'Can wait'
+        gradient: 'linear-gradient(135deg, #3b82f6, #2563eb)'
       },
       {
         title: 'Not Affordable',
         value: this.stats.notAffordable,
+        pct: this.stats.totalRequests > 0 ? ((this.stats.notAffordable / this.stats.totalRequests) * 100).toFixed(1) : 0,
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
         iconClass: 'danger',
         cardClass: 'not-affordable',
-        trend: 'Needs review'
+        gradient: 'linear-gradient(135deg, #ef4444, #dc2626)'
       },
       {
         title: 'Total Safe Amount',
-        value: `$${this.formatNumber(this.stats.totalAmountSafe)}`,
+        value: fmt(this.stats.totalAmountSafe),
+        subtext: `Avg: ${fmt(this.stats.avgSafeAmount)} per request`,
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',
         iconClass: 'primary',
         cardClass: 'full',
-        trend: `Avg: $${this.formatNumber(this.stats.avgSafeAmount)}`
+        gradient: 'linear-gradient(135deg, #8b5cf6, #7c3aed)'
       }
     ];
     
     statsGrid.innerHTML = statCards.map(card => `
-      <div class="stat-card ${card.cardClass}">
-        <div class="stat-icon ${card.iconClass}">
+      <div class="stat-card ${card.cardClass}" style="background: ${card.gradient || 'var(--bg-card)'}; position: relative;">
+        <div class="stat-card-glow"></div>
+        <div class="stat-icon ${card.iconClass}" style="background: rgba(255,255,255,0.15);">
           ${card.icon}
         </div>
-        <div class="stat-value">${card.value}</div>
-        <div class="stat-label">${card.title}</div>
-        ${card.trend ? `<div class="stat-trend" style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">${card.trend}</div>` : ''}
+        <div class="stat-value" style="color: white;">${card.value}</div>
+        <div class="stat-label" style="color: rgba(255,255,255,0.8);">${card.title}</div>
+        ${card.pct ? `<div class="stat-pct" style="color: rgba(255,255,255,0.9); font-weight: 600;">${card.pct}%</div>` : ''}
+        ${card.subtext ? `<div class="stat-trend" style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">${card.subtext}</div>` : ''}
       </div>
     `).join('');
     
@@ -285,38 +341,77 @@ class BuyOrWaitApp {
     this.updateCharts();
   }
   
-  // Charts Setup
+  // Charts Setup - Multiple Graphical Modes
   setupCharts() {
-    // These will be initialized when data is available
-  }
+    // Destroy existing charts first
+    Object.values(this.charts).forEach(chart => {
+      if (chart) chart.destroy();
+    });
+    this.charts = {};
+  },
   
   updateCharts() {
-    if (!this.stats || !this.charts.affordability) {
+    if (!this.stats) {
       this.initCharts();
       return;
     }
     
-    // Update affordability chart
-    this.charts.affordability.data.datasets[0].data = [
-      this.stats.affordableNow,
-      this.stats.affordableWithPlan,
-      this.stats.affordableLater,
-      this.stats.notAffordable
-    ];
-    this.charts.affordability.update();
+    const mode = this.graphicalMode;
     
-    // Update payment method chart
-    this.charts.paymentMethod.data.datasets[0].data = [
-      this.stats.fullPayment,
-      this.stats.partialPayment,
-      this.stats.installments,
-      this.stats.wait,
-      this.stats.notRecommended
-    ];
-    this.charts.paymentMethod.update();
+    // Update based on mode
+    if (mode === 'donut' || mode === 'charts') {
+      this.updateDonutChart();
+      this.updatePaymentMethodChart();
+    }
     
-    // Update currency chart
-    const currencyData = this.currencies.map(curr => ({
+    if (mode === 'bar' || mode === 'charts') {
+      this.updateCurrencyChart();
+      this.updateCategoryChart();
+    }
+    
+    if (mode === 'line') {
+      this.updateTrendChart();
+    }
+    
+    if (mode === 'heatmap' || mode === 'comparison') {
+      this.updateHeatmapChart();
+    }
+    
+    if (mode === 'charts') {
+      this.updateUserChart();
+    }
+  }
+  
+  updateDonutChart() {
+    if (this.charts.affordability) {
+      this.charts.affordability.data.datasets[0].data = [
+        this.stats.affordableNow,
+        this.stats.affordableWithPlan,
+        this.stats.affordableLater,
+        this.stats.notAffordable
+      ];
+      this.charts.affordability.update();
+    }
+  }
+  
+  updatePaymentMethodChart() {
+    if (this.charts.paymentMethod) {
+      this.charts.paymentMethod.data.datasets[0].data = [
+        this.stats.fullPayment,
+        this.stats.partialPayment,
+        this.stats.installments,
+        this.stats.wait,
+        this.stats.notRecommended
+      ];
+      this.charts.paymentMethod.update();
+    }
+  }
+  
+  updateCurrencyChart() {
+    if (!this.charts.currency) return;
+    
+    const currencies = this.currencies || [];
+    const currencyData = currencies.map(curr => ({
       label: curr,
       value: this.currencyStats[curr]?.totalSafe || 0
     }));
@@ -324,8 +419,59 @@ class BuyOrWaitApp {
     this.charts.currency.data.labels = currencyData.map(d => d.label);
     this.charts.currency.data.datasets[0].data = currencyData.map(d => d.value);
     this.charts.currency.update();
+  }
+  
+  updateCategoryChart() {
+    if (!this.charts.category || !this.categoryStats) return;
     
-    // Update user chart
+    const categories = Object.keys(this.categoryStats);
+    this.charts.category.data.labels = categories;
+    this.charts.category.data.datasets[0].data = categories.map(c => this.categoryStats[c].count);
+    this.charts.category.update();
+  }
+  
+  updateTrendChart() {
+    if (!this.charts.trend) return;
+    
+    // Group requests by month based on request_date
+    const monthlyData = {};
+    this.requests.forEach((req, idx) => {
+      const month = req.request_date?.substring(0, 7) || 'unknown';
+      if (!monthlyData[month]) {
+        monthlyData[month] = { total: 0, safe: 0, affordable: 0, plan: 0, later: 0, notAffordable: 0 };
+      }
+      monthlyData[month].total++;
+      monthlyData[month].safe += this.analysis[idx]?.amount_safe_to_pay || 0;
+      monthlyData[month][this.analysis[idx]?.affordability_status]++;
+    });
+    
+    const months = Object.keys(monthlyData).sort();
+    this.charts.trend.data.labels = months;
+    this.charts.trend.data.datasets[0].data = months.map(m => monthlyData[m].safe);
+    this.charts.trend.data.datasets[1].data = months.map(m => monthlyData[m].total);
+    this.charts.trend.update();
+  }
+  
+  updateHeatmapChart() {
+    if (!this.charts.heatmap) return;
+    
+    // User vs Status heatmap data
+    const userIds = Object.keys(this.userBreakdown || {});
+    const statusKeys = ['affordableNow', 'affordableWithPlan', 'affordableLater', 'notAffordable'];
+    
+    this.charts.heatmap.data.labels = userIds;
+    this.charts.heatmap.data.datasets = statusKeys.map((key, idx) => ({
+      label: key.replace('affordable', 'Aff.').replace('notAffordable', 'Not Aff.'),
+      data: userIds.map(uid => (this.userBreakdown[uid]?.[key] || 0)),
+      backgroundColor: this.chartColors[idx],
+      borderRadius: 3
+    }));
+    this.charts.heatmap.update();
+  }
+  
+  updateUserChart() {
+    if (!this.charts.user) return;
+    
     const userData = Object.entries(this.userBreakdown || {}).map(([userId, data]) => ({
       label: userId,
       affordableNow: data.affordableNow,
@@ -343,6 +489,12 @@ class BuyOrWaitApp {
   }
   
   initCharts() {
+    // Destroy existing charts
+    Object.values(this.charts).forEach(chart => {
+      if (chart) chart.destroy();
+    });
+    this.charts = {};
+    
     const chartOptions = {
       responsive: true,
       maintainAspectRatio: false,
@@ -353,7 +505,8 @@ class BuyOrWaitApp {
             color: '#cbd5e1',
             padding: 16,
             usePointStyle: true,
-            pointStyle: 'circle'
+            pointStyle: 'circle',
+            font: { size: 11 }
           }
         },
         tooltip: {
@@ -369,21 +522,18 @@ class BuyOrWaitApp {
               const total = context.dataset.data.reduce((a, b) => a + b, 0);
               const value = context.parsed;
               const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
-              return `${context.label}: ${value} (${percentage}%)`;
+              return `${context.label}: ${value.toLocaleString()} (${percentage}%)`;
             }
           }
         }
       },
       animation: {
         animateRotate: true,
-        duration: 1000
+        animateScale: true,
+        duration: 1200,
+        easing: 'easeOutQuart'
       }
     };
-    
-    // Destroy existing charts
-    Object.values(this.charts).forEach(chart => {
-      if (chart) chart.destroy();
-    });
     
     const colors = {
       affordableNow: '#10b981',
@@ -397,194 +547,167 @@ class BuyOrWaitApp {
       notRecommended: '#ef4444'
     };
     
-    // Affordability Donut Chart
-    const ctx1 = document.getElementById('affordabilityChart').getContext('2d');
-    this.charts.affordability = new Chart(ctx1, {
-      type: 'doughnut',
-      data: {
-        labels: ['Affordable Now', 'With Plan', 'Affordable Later', 'Not Affordable'],
-        datasets: [{
-          data: [this.stats?.affordableNow || 0, this.stats?.affordableWithPlan || 0, 
-                 this.stats?.affordableLater || 0, this.stats?.notAffordable || 0],
-          backgroundColor: [
-            colors.affordableNow,
-            colors.affordableWithPlan,
-            colors.affordableLater,
-            colors.notAffordable
-          ],
-          borderColor: '#1e293b',
-          borderWidth: 3,
-          hoverOffset: 8
-        }]
-      },
-      options: {
-        ...chartOptions,
-        cutout: '65%',
-        plugins: {
-          ...chartOptions.plugins,
-          legend: {
-            ...chartOptions.plugins.legend,
-            labels: {
-              ...chartOptions.plugins.legend.labels,
-              padding: 20
-            }
-          }
-        }
-      }
-    });
+    this.chartColors = [colors.affordableNow, colors.affordableWithPlan, colors.affordableLater, colors.notAffordable];
     
-    // Payment Method Bar Chart
-    const ctx2 = document.getElementById('paymentMethodChart').getContext('2d');
-    this.charts.paymentMethod = new Chart(ctx2, {
-      type: 'bar',
-      data: {
-        labels: ['Full Payment', 'Partial', 'Installments', 'Wait', 'Not Recommended'],
-        datasets: [{
-          data: [this.stats?.fullPayment || 0, this.stats?.partialPayment || 0,
-                 this.stats?.installments || 0, this.stats?.wait || 0, this.stats?.notRecommended || 0],
-          backgroundColor: [
-            colors.fullPayment,
-            colors.partialPayment,
-            colors.installments,
-            colors.wait,
-            colors.notRecommended
-          ],
-          borderRadius: 6,
-          borderSkipped: false,
-          barThickness: 40
-        }]
-      },
-      options: {
-        ...chartOptions,
-        plugins: {
-          ...chartOptions.plugins,
-          legend: { display: false }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: '#94a3b8',
-              stepSize: 1
-            },
-            grid: {
-              color: 'rgba(100, 116, 139, 0.1)'
-            }
-          },
-          x: {
-            ticks: {
-              color: '#cbd5e1'
-            },
-            grid: { display: false }
-          }
-        }
-      }
-    });
+    // Chart containers
+    const containers = [
+      { id: 'affordabilityChart', type: 'doughnut', title: 'Affordability Distribution' },
+      { id: 'paymentMethodChart', type: 'bar', title: 'Payment Methods' },
+      { id: 'currencyChart', type: 'bar', title: 'By Currency' },
+      { id: 'categoryChart', type: 'bar', title: 'By Category' },
+      { id: 'trendChart', type: 'line', title: 'Trends Over Time' },
+      { id: 'heatmapChart', type: 'bar', title: 'User Analysis' }
+    ];
     
-    // Currency Chart
-    const ctx3 = document.getElementById('currencyChart').getContext('2d');
-    this.charts.currency = new Chart(ctx3, {
-      type: 'bar',
-      data: {
-        labels: this.currencies || [],
-        datasets: [{
-          data: this.currencies.map(curr => this.currencyStats[curr]?.totalSafe || 0),
-          backgroundColor: '#6366f1',
-          borderRadius: 6,
-          borderSkipped: false,
-          barThickness: 40
-        }]
-      },
-      options: {
-        ...chartOptions,
-        plugins: {
-          ...chartOptions.plugins,
-          legend: { display: false }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: '#94a3b8',
-              callback: (value) => this.formatNumber(value)
-            },
-            grid: {
-              color: 'rgba(100, 116, 139, 0.1)'
+    containers.forEach((container, idx) => {
+      const canvas = document.getElementById(container.id);
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      
+      if (container.type === 'doughnut') {
+        this.charts.affordability = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Affordable Now', 'With Plan', 'Affordable Later', 'Not Affordable'],
+            datasets: [{
+              data: [this.stats?.affordableNow || 0, this.stats?.affordableWithPlan || 0, 
+                     this.stats?.affordableLater || 0, this.stats?.notAffordable || 0],
+              backgroundColor: [
+                '#10b981',
+                '#f59e0b',
+                '#3b82f6',
+                '#ef4444'
+              ],
+              borderColor: '#1e293b',
+              borderWidth: 3,
+              hoverOffset: 12
+            }]
+          },
+          options: {
+            ...chartOptions,
+            cutout: '60%',
+            plugins: {
+              ...chartOptions.plugins,
+              legend: {
+                ...chartOptions.plugins.legend,
+                position: 'bottom',
+                labels: { ...chartOptions.plugins.legend.labels, padding: 20 }
+              }
             }
-          },
-          x: {
-            ticks: {
-              color: '#cbd5e1'
+          }
+        });
+      } else if (container.type === 'bar') {
+        if (container.id === 'paymentMethodChart') {
+          this.charts.paymentMethod = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Full Payment', 'Partial', 'Installments', 'Wait', 'Not Recommended'],
+              datasets: [{
+                data: [this.stats?.fullPayment || 0, this.stats?.partialPayment || 0,
+                       this.stats?.installments || 0, this.stats?.wait || 0, this.stats?.notRecommended || 0],
+                backgroundColor: ['#10b981', '#6366f1', '#3b82f6', '#f59e0b', '#ef4444'],
+                borderRadius: 8,
+                borderSkipped: false,
+                barThickness: 50
+              }]
             },
-            grid: { display: false }
-          }
-        }
-      }
-    });
-    
-    // User Chart
-    const ctx4 = document.getElementById('userChart').getContext('2d');
-    this.charts.user = new Chart(ctx4, {
-      type: 'bar',
-      data: {
-        labels: Object.keys(this.userBreakdown || {}),
-        datasets: [
-          {
-            label: 'Affordable Now',
-            data: [],
-            backgroundColor: colors.affordableNow,
-            borderRadius: 3
-          },
-          {
-            label: 'With Plan',
-            data: [],
-            backgroundColor: colors.affordableWithPlan,
-            borderRadius: 3
-          },
-          {
-            label: 'Later',
-            data: [],
-            backgroundColor: colors.affordableLater,
-            borderRadius: 3
-          },
-          {
-            label: 'Not Affordable',
-            data: [],
-            backgroundColor: colors.notAffordable,
-            borderRadius: 3
-          }
-        ]
-      },
-      options: {
-        ...chartOptions,
-        indexAxis: 'y',
-        plugins: {
-          ...chartOptions.plugins,
-          legend: {
-            ...chartOptions.plugins.legend,
-            position: 'top'
-          }
-        },
-        scales: {
-          x: {
-            stacked: true,
-            beginAtZero: true,
-            ticks: {
-              color: '#94a3b8',
-              stepSize: 1
-            },
-            grid: {
-              color: 'rgba(100, 116, 139, 0.1)'
+            options: {
+              ...chartOptions,
+              plugins: { ...chartOptions.plugins, legend: { display: false } },
+              scales: {
+                y: { beginAtZero: true, ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: 'rgba(100, 116, 139, 0.1)' } },
+                x: { ticks: { color: '#cbd5e1' }, grid: { display: false } }
+              }
             }
-          },
-          y: {
-            stacked: true,
-            ticks: {
-              color: '#cbd5e1'
+          });
+        } else if (container.id === 'currencyChart') {
+          this.charts.currency = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: this.currencies || [],
+              datasets: [{
+                data: this.currencies?.map(curr => this.currencyStats[curr]?.totalSafe || 0) || [],
+                backgroundColor: '#6366f1',
+                borderRadius: 8,
+                borderSkipped: false,
+                barThickness: 50
+              }]
             },
-            grid: { display: false }
-          }
+            options: {
+              ...chartOptions,
+              plugins: { ...chartOptions.plugins, legend: { display: false } },
+              scales: {
+                y: { beginAtZero: true, ticks: { color: '#94a3b8', callback: (v) => this.formatNumber(v) }, grid: { color: 'rgba(100, 116, 139, 0.1)' } },
+                x: { ticks: { color: '#cbd5e1' }, grid: { display: false } }
+              }
+            }
+          });
+        } else if (container.id === 'categoryChart') {
+          this.charts.category = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: Object.keys(this.categoryStats || {}),
+              datasets: [{
+                data: Object.values(this.categoryStats || {}).map(c => c.count),
+                backgroundColor: '#8b5cf6',
+                borderRadius: 8,
+                borderSkipped: false,
+                barThickness: 40
+              }]
+            },
+            options: {
+              ...chartOptions,
+              plugins: { ...chartOptions.plugins, legend: { display: false } },
+              scales: {
+                y: { beginAtZero: true, ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: 'rgba(100, 116, 139, 0.1)' } },
+                x: { ticks: { color: '#cbd5e1', maxRotation: 45 }, grid: { display: false } }
+              }
+            }
+          });
+        } else if (container.id === 'heatmapChart') {
+          const userData = Object.entries(this.userBreakdown || {});
+          this.charts.heatmap = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: userData.map(d => d[0]),
+              datasets: [
+                { label: 'Affordable Now', data: userData.map(d => d[1].affordableNow), backgroundColor: '#10b981', borderRadius: 3 },
+                { label: 'With Plan', data: userData.map(d => d[1].affordableWithPlan), backgroundColor: '#f59e0b', borderRadius: 3 },
+                { label: 'Later', data: userData.map(d => d[1].affordableLater), backgroundColor: '#3b82f6', borderRadius: 3 },
+                { label: 'Not Affordable', data: userData.map(d => d[1].notAffordable), backgroundColor: '#ef4444', borderRadius: 3 }
+              ]
+            },
+            options: {
+              ...chartOptions,
+              indexAxis: 'y',
+              plugins: { ...chartOptions.plugins, legend: { position: 'top' } },
+              scales: {
+                x: { stacked: true, beginAtZero: true, ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: 'rgba(100, 116, 139, 0.1)' } },
+                y: { stacked: true, ticks: { color: '#cbd5e1' }, grid: { display: false } }
+              }
+            }
+          });
         }
+      } else if (container.type === 'line') {
+        this.charts.trend = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [
+              { label: 'Total Requests', data: [], borderColor: '#6366f1', backgroundColor: 'rgba(99, 102, 241, 0.1)', fill: true, tension: 0.4, pointRadius: 4 },
+              { label: 'Safe Amount', data: [], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4, pointRadius: 4 }
+            ]
+          },
+          options: {
+            ...chartOptions,
+            plugins: { ...chartOptions.plugins, legend: { position: 'top' } },
+            scales: {
+              y: { beginAtZero: true, ticks: { color: '#94a3b8' }, grid: { color: 'rgba(100, 116, 139, 0.1)' } },
+              x: { ticks: { color: '#cbd5e1', maxRotation: 45 }, grid: { display: false } }
+            }
+          }
+        });
       }
     });
   }

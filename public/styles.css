@@ -979,6 +979,129 @@ body {
   font-size: 1.1rem;
 }
 
+/* Graphical Mode Controls */
+.graphical-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  padding: 0.75rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+}
+
+.graphical-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.graphical-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.graphical-mode-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.graphical-mode-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.graphical-mode-btn.active {
+  background: var(--primary-bg);
+  color: var(--primary);
+  border-color: var(--primary-light);
+}
+
+.graphical-mode-btn.active svg {
+  stroke: var(--primary);
+}
+
+.chart-card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.stat-card:hover .chart-card-glow {
+  opacity: 1;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.chart-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.chart-card-lg {
+  grid-column: span 2;
+}
+
+.chart-card-xl {
+  grid-column: span 2;
+}
+
+@media (max-width: 1200px) {
+  .chart-card-lg {
+    grid-column: span 1;
+  }
+  
+  .chart-card-xl {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .graphical-controls {
+    padding: 0.5rem;
+  }
+  
+  .graphical-mode-btn span {
+    display: none;
+  }
+  
+  .graphical-mode-btn {
+    padding: 0.5rem;
+  }
+}
+
 .details-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
