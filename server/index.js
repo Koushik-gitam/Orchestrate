@@ -21,9 +21,11 @@ const HOST = process.env.HOST || '0.0.0.0';
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
-// Serve static files from public directory
+// Serve static files from public directory (for non-Vercel deployments)
 const publicPath = path.join(__dirname, '..', 'public');
-app.use(express.static(publicPath));
+if (!isVercel && fs.existsSync(publicPath)) {
+  app.use(express.static(publicPath));
+}
 
 // In-memory data storage
 let financialData = null;
