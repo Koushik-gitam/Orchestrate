@@ -916,10 +916,24 @@ startServer();
 
 // Export for Vercel serverless
 module.exports = app;
-module.exports.handler = async (req, res) => {
+
+// Vercel serverless handler
+module.exports.handler = async function(req, res) {
   // Ensure data is loaded before handling request
   if (!serverStarted) {
     await startServer();
   }
-  return app(req, res);
+  
+  // Set Vercel-specific headers
+  res.setHeader('X-Vercel-Edge', 'true');
+  
+  return new Promise((resolve, reject) => {
+    app(req, res, (result) => {
+      if (result instanceof Error) {
+        reject(result);
+      } else {
+        resolve(result);
+      }
+    });
+  });
 };
