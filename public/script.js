@@ -164,8 +164,8 @@ class BuyOrWaitApp {
   // Data Loading
   async loadData() {
     try {
-      // Wait a moment for server to initialize
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Vercel serverless functions may need extra time to cold start
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Try to load from API
       const response = await fetch('/api/load-data', {
@@ -187,8 +187,8 @@ class BuyOrWaitApp {
       }
     } catch (error) {
       console.error('Error loading data:', error);
-      // Load from API directly
-      await new Promise(resolve => setTimeout(resolve, 300));
+      // Load from API directly - data should already be loaded
+      await new Promise(resolve => setTimeout(resolve, 500));
       await this.fetchRequests();
       await this.fetchStats();
       this.updateStatus('online', 'Using API');
