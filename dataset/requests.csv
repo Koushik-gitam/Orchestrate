@@ -1,0 +1,251 @@
+request_id,user_id,amount,desired_completion_date,item,category,currency
+RQ001,U001,2500.00,2026-09-26,Laptop,electronics,USD
+RQ002,U002,1800.00,2026-10-02,Kitchen Appliances,home,EUR
+RQ003,U003,35000.00,2026-10-12,Smartphone,electronics,INR
+RQ004,U004,8000.00,2026-09-27,Travel Package,leisure,ZAR
+RQ005,U005,8500000.00,2026-10-27,Gaming Setup,electronics,IDR
+RQ006,U001,800.00,2026-09-20,Books,education,USD
+RQ007,U002,500.00,2026-09-25,Restaurant Dinner,leisure,EUR
+RQ008,U003,15000.00,2026-10-05,Tablet,electronics,INR
+RQ009,U004,3000.00,2026-09-22,Concert Tickets,leisure,ZAR
+RQ010,U005,12000000.00,2026-11-01,Home Theater,electronics,IDR
+RQ011,U006,3000.00,2026-09-28,Gym Equipment,health,USD
+RQ012,U007,1200.00,2026-09-29,Dinner Set,home,EUR
+RQ013,U008,25000.00,2026-10-08,Laptop,electronics,INR
+RQ014,U009,5000.00,2026-09-30,Family Vacation,leisure,ZAR
+RQ015,U010,15000000.00,2026-11-05,VR Headset,electronics,IDR
+RQ016,U001,1500.00,2026-09-23,Smart Watch,electronics,USD
+RQ017,U002,700.00,2026-09-24,Office Supplies,work,EUR
+RQ018,U003,20000.00,2026-10-15,Desktop PC,electronics,INR
+RQ019,U004,6000.00,2026-09-28,Shopping Spree,leisure,ZAR
+RQ020,U005,5000000.00,2026-10-20,Phone Upgrade,electronics,IDR
+RQ021,U006,2000.00,2026-09-26,Camera,electronics,USD
+RQ022,U007,900.00,2026-09-27,Sports Gear,sports,EUR
+RQ023,U008,18000.00,2026-10-10,Refrigerator,home,INR
+RQ024,U009,4000.00,2026-09-29,Hiking Trip,leisure,ZAR
+RQ025,U010,8000000.00,2026-10-30,Console,electronics,IDR
+RQ026,U001,600.00,2026-09-19,Streaming Subscription,entertainment,USD
+RQ027,U002,400.00,2026-09-22,Coffee Machine,home,EUR
+RQ028,U003,10000.00,2026-10-03,Headphones,electronics,INR
+RQ029,U004,2500.00,2026-09-21,Movie Tickets,entertainment,ZAR
+RQ030,U005,3000000.00,2026-10-18,Smart TV,electronics,IDR
+RQ031,U006,1800.00,2026-09-25,Bicycle,sports,USD
+RQ032,U007,1100.00,2026-09-28,Yoga Mat,health,EUR
+RQ033,U008,12000.00,2026-10-07,Washing Machine,home,INR
+RQ034,U009,3500.00,2026-09-26,Art Supplies,education,ZAR
+RQ035,U010,10000000.00,2026-11-02,Gaming Chair,electronics,IDR
+RQ036,U001,3500.00,2026-09-30,Desktop Monitor,electronics,USD
+RQ037,U002,600.00,2026-09-23,Pet Supplies,pets,EUR
+RQ038,U003,28000.00,2026-10-18,Serverset,electronics,INR
+RQ039,U004,7000.00,2026-09-30,Weekend Getaway,leisure,ZAR
+RQ040,U005,6000000.00,2026-10-25,Tablet Pro,electronics,IDR
+RQ041,U006,2500.00,2026-09-27,Keyboard,electronics,USD
+RQ042,U007,800.00,2026-09-26,Lamps,home,EUR
+RQ043,U008,22000.00,2026-10-12,Microwave,home,INR
+RQ044,U009,4500.00,2026-09-28,Spa Treatment,health,ZAR
+RQ045,U010,4000000.00,2026-10-22,Drone,electronics,IDR
+RQ046,U001,1200.00,2026-09-21,Shoes,clothing,USD
+RQ047,U002,350.00,2026-09-20,Groceries,home,EUR
+RQ048,U003,8000.00,2026-10-01,Tablet Stand,electronics,INR
+RQ049,U004,1800.00,2026-09-23,Cafe Visit,leisure,ZAR
+RQ050,U005,2000000.00,2026-10-15,Wireless Earbuds,electronics,IDR
+RQ051,U006,4000.00,2026-09-29,Luggage, travel,USD
+RQ052,U007,1500.00,2026-09-30,Exercise Bike,health,EUR
+RQ053,U008,30000.00,2026-10-14,Smart Home System,home,INR
+RQ054,U009,6000.00,2026-09-30,Dancing Classes,entertainment,ZAR
+RQ055,U010,18000000.00,2026-11-10,Complete PC Build,electronics,IDR
+RQ056,U001,900.00,2026-09-18,Gift Set,gifts,USD
+RQ057,U002,550.00,2026-09-21,Handbag,fashion,EUR
+RQ058,U003,14000.00,2026-10-06,External SSD,electronics,INR
+RQ059,U004,3200.00,2026-09-24,Board Games,entertainment,ZAR
+RQ060,U005,9000000.00,2026-10-28,Home Gym,health,IDR
+RQ061,U006,1600.00,2026-09-24,Backpack,travel,USD
+RQ062,U007,700.00,2026-09-25,Books,education,EUR
+RQ063,U008,16000.00,2026-10-09,Dishwasher,home,INR
+RQ064,U009,2800.00,2026-09-27,Fishing Trip,leisure,ZAR
+RQ065,U010,7000000.00,2026-10-24,Smartwatch,electronics,IDR
+RQ066,U001,2200.00,2026-09-28,Tablet,electronics,USD
+RQ067,U002,480.00,2026-09-26,Candles,home,EUR
+RQ068,U003,22000.00,2026-10-16,Printer,electronics,INR
+RQ069,U004,5500.00,2026-09-29,Wine Tasting,leisure,ZAR
+RQ070,U005,3500000.00,2026-10-19,Bluetooth Speaker,electronics,IDR
+RQ071,U006,1100.00,2026-09-22,Sunglasses,fashion,USD
+RQ072,U007,950.00,2026-09-29,Puzzle Game,entertainment,EUR
+RQ073,U008,20000.00,2026-10-11,Air Conditioner,home,INR
+RQ074,U009,4200.00,2026-09-26,Pottery Class,education,ZAR
+RQ075,U010,11000000.00,2026-11-03,Monitor,electronics,IDR
+RQ076,U001,750.00,2026-09-17,Phone Case,gifts,USD
+RQ077,U002,650.00,2026-09-24,Perfume,fashion,EUR
+RQ078,U003,9000.00,2026-10-04,USB Drive,electronics,INR
+RQ079,U004,2100.00,2026-09-22,Karaoke,leisure,ZAR
+RQ080,U005,4500000.00,2026-10-21,Smart Lights,electronics,IDR
+RQ081,U006,3200.00,2026-09-27,Coffee Maker,home,USD
+RQ082,U007,1300.00,2026-09-28,Dumbbells,health,EUR
+RQ083,U008,14000.00,2026-10-05,Vacuum Cleaner,home,INR
+RQ084,U009,3800.00,2026-09-25,Painting Workshop,education,ZAR
+RQ085,U010,6000000.00,2026-10-23,Gaming Mouse,electronics,IDR
+RQ086,U001,1800.00,2026-09-24,Desk Chair,office,USD
+RQ087,U002,420.00,2026-09-22,Notebook,education,EUR
+RQ088,U003,17000.00,2026-10-13,Projector,electronics,INR
+RQ089,U004,4800.00,2026-09-28,Surfing Lessons,leisure,ZAR
+RQ090,U005,2500000.00,2026-10-17,Power Bank,electronics,IDR
+RQ091,U006,950.00,2026-09-21,Wall Art,decor,USD
+RQ092,U007,880.00,2026-09-27,Scented Candles,home,EUR
+RQ093,U008,26000.00,2026-10-15,Security System,home,INR
+RQ094,U009,5200.00,2026-09-30,Photography Tour,leisure,ZAR
+RQ095,U010,13000000.00,2026-11-08,Streaming Device,electronics,IDR
+RQ096,U001,2800.00,2026-09-29,Ergonomic Keyboard,electronics,USD
+RQ097,U002,580.00,2026-09-25,Plush Toy,gifts,EUR
+RQ098,U003,32000.00,2026-10-19,Smart Thermostat,home,INR
+RQ099,U004,6500.00,2026-09-30,Culinary Class,leisure,ZAR
+RQ100,U005,8000000.00,2026-10-26,Robotic Vacuum,electronics,IDR
+RQ101,U006,1400.00,2026-09-23,Water Bottle,sports,USD
+RQ102,U007,750.00,2026-09-26,Sketchbook,education,EUR
+RQ103,U008,19000.00,2026-10-07,Microwave Oven,home,INR
+RQ104,U009,3100.00,2026-09-24,Chess Set,games,ZAR
+RQ105,U010,9500000.00,2026-10-29,Gaming Console,electronics,IDR
+RQ106,U001,2100.00,2026-09-25,Mouse Pad,electronics,USD
+RQ107,U002,520.00,2026-09-23,Houseplant,pets,EUR
+RQ108,U003,21000.00,2026-10-11,Door Lock,security,INR
+RQ109,U004,5800.00,2026-09-27,Sunset Cruise,leisure,ZAR
+RQ110,U005,5500000.00,2026-10-22,Tablet Pen,electronics,IDR
+RQ111,U006,850.00,2026-09-20,Travel Pillow,travel,USD
+RQ112,U007,1100.00,2026-09-29,Painting Supplies,education,EUR
+RQ113,U008,23000.00,2026-10-13,Smoke Detector,home,INR
+RQ114,U009,4100.00,2026-09-26,Tennis Lessons,sports,ZAR
+RQ115,U010,7500000.00,2026-10-25,Webcam,electronics,IDR
+RQ116,U001,3100.00,2026-09-28,Monitor Arm,office,USD
+RQ117,U002,620.00,2026-09-24,Cat Food,pets,EUR
+RQ118,U003,27000.00,2026-10-17,Security Camera,security,INR
+RQ119,U004,6200.00,2026-09-29,Beer Tasting,leisure,ZAR
+RQ120,U005,4000000.00,2026-10-20,Charging Cable,electronics,IDR
+RQ121,U006,1900.00,2026-09-26,Noise Cancelling Headphones,electronics,USD
+RQ122,U007,820.00,2026-09-28,Plant Pot,pets,EUR
+RQ123,U008,15000.00,2026-10-06,Fire Extinguisher,home,INR
+RQ124,U009,3600.00,2026-09-25,Bird Watching,leisure,ZAR
+RQ125,U010,16000000.00,2026-11-06,Complete Gaming Setup,electronics,IDR
+RQ126,U001,1600.00,2026-09-22,USB Hub,electronics,USD
+RQ127,U002,490.00,2026-09-21,Fish Tank,pets,EUR
+RQ128,U003,11000.00,2026-10-02,Door Bell,home,INR
+RQ129,U004,4400.00,2026-09-23,Sailing Trip,leisure,ZAR
+RQ130,U005,2800000.00,2026-10-16,Phone Case,electronics,IDR
+RQ131,U006,1300.00,2026-09-25,Screen Protector,electronics,USD
+RQ132,U007,980.00,2026-09-27,Dog Collar,pets,EUR
+RQ133,U008,24000.00,2026-10-10,Water Purifier,home,INR
+RQ134,U009,5100.00,2026-09-28,Camping Trip,leisure,ZAR
+RQ135,U010,6500000.00,2026-10-24,Bluetooth Headset,electronics,IDR
+RQ136,U001,2400.00,2026-09-27,Webcam,electronics,USD
+RQ137,U002,560.00,2026-09-25,Hamster Food,pets,EUR
+RQ138,U003,13000.00,2026-10-08,Window Lock,security,INR
+RQ139,U004,7800.00,2026-10-01,Whale Watching,leisure,ZAR
+RQ140,U005,3800000.00,2026-10-19,Phone Charger,electronics,IDR
+RQ141,U006,1700.00,2026-09-24,Laptop Stand,office,USD
+RQ142,U007,790.00,2026-09-26,Rabbit Hutch,pets,EUR
+RQ143,U008,18000.00,2026-10-04,Gas Stove,home,INR
+RQ144,U009,4700.00,2026-09-27,Hiking Boots,sports,ZAR
+RQ145,U010,10500000.00,2026-11-04,Gaming Desk,office,IDR
+RQ146,U001,950.00,2026-09-19,Desk Lamp,office,USD
+RQ147,U002,510.00,2026-09-23,Bird Cage,pets,EUR
+RQ148,U003,26000.00,2026-10-16,Metal Door,security,INR
+RQ149,U004,5300.00,2026-09-26,Scuba Diving,leisure,ZAR
+RQ150,U005,7200000.00,2026-10-28,Tablet Case,electronics,IDR
+RQ151,U006,2600.00,2026-09-29,Office Chair,office,USD
+RQ152,U007,850.00,2026-09-28,Fish Net,pets,EUR
+RQ153,U008,17000.00,2026-10-09,Electric Kettle,home,INR
+RQ154,U009,3900.00,2026-09-25,Road Bike,sports,ZAR
+RQ155,U010,8800000.00,2026-10-27,Monitor Stand,office,IDR
+RQ156,U001,1100.00,2026-09-20,Desk Organizer,office,USD
+RQ157,U002,680.00,2026-09-24,Canary Food,pets,EUR
+RQ158,U003,29000.00,2026-10-18,Alarm System,security,INR
+RQ159,U004,6800.00,2026-10-02,Paragliding,leisure,ZAR
+RQ160,U005,4800000.00,2026-10-23,USB-C Cable,electronics,IDR
+RQ161,U006,800.00,2026-09-18,Whiteboard,office,USD
+RQ162,U007,920.00,2026-09-27,Parrot Perch,pets,EUR
+RQ163,U008,21000.00,2026-10-12,Induction Cooktop,home,INR
+RQ164,U009,4300.00,2026-09-29,Mountain Bike,sports,ZAR
+RQ165,U010,7800000.00,2026-10-26,Desk Drawer,office,IDR
+RQ166,U001,1400.00,2026-09-23,Paper Shredder,office,USD
+RQ167,U002,540.00,2026-09-22,Guinea Pig Food,pets,EUR
+RQ168,U003,15000.00,2026-10-05,Window Sensor,security,INR
+RQ169,U004,7200.00,2026-09-30,Kite Surfing,leisure,ZAR
+RQ170,U005,5800000.00,2026-10-25,Phone Ring,electronics,IDR
+RQ171,U006,1250.00,2026-09-24,File Cabinet,office,USD
+RQ172,U007,670.00,2026-09-25,Turtle Tank,pets,EUR
+RQ173,U008,20000.00,2026-10-08,Microwave Stand,home,INR
+RQ174,U009,5600.00,2026-09-28,Exercise Ring,health,ZAR
+RQ175,U010,14000000.00,2026-11-09,Office Mat,office,IDR
+RQ176,U001,1900.00,2026-09-26,Desk Fan,office,USD
+RQ177,U002,710.00,2026-09-26,Reptile Heat Lamp,pets,EUR
+RQ178,U003,19000.00,2026-10-14,Garage Door Opener,security,INR
+RQ179,U004,6100.00,2026-09-27,Zip Lining,leisure,ZAR
+RQ180,U005,3200000.00,2026-10-21,Computer Vacuum,electronics,IDR
+RQ181,U006,1550.00,2026-09-25,Desk Calendar,office,USD
+RQ182,U007,860.00,2026-09-28,Snake Heating Pad,pets,EUR
+RQ183,U008,22000.00,2026-10-11,Toaster Oven,home,INR
+RQ184,U009,4800.00,2026-09-30,Rock Climbing,sports,ZAR
+RQ185,U010,9200000.00,2026-10-29,Desk Bookshelf,office,IDR
+RQ186,U001,1750.00,2026-09-22,Monitor Light,office,USD
+RQ187,U002,630.00,2026-09-23,Tortoise Food,pets,EUR
+RQ188,U003,16000.00,2026-10-07,Motion Sensor,security,INR
+RQ189,U004,6700.00,2026-09-26,Bungee Jumping,leisure,ZAR
+RQ190,U005,6800000.00,2026-10-24,Keyboard Cleaner,electronics,IDR
+RQ191,U006,2250.00,2026-09-27,Desk Phone,office,USD
+RQ192,U007,780.00,2026-09-27,Iguana Food,pets,EUR
+RQ193,U008,14000.00,2026-10-03,Coffee Grinder,home,INR
+RQ194,U009,5200.00,2026-09-29,Abseiling,leisure,ZAR
+RQ195,U010,7500000.00,2026-10-23,Screen Cleaner,electronics,IDR
+RQ196,U001,2150.00,2026-09-25,Desk Radio,office,USD
+RQ197,U002,890.00,2026-09-25,Lizard Cage,pets,EUR
+RQ198,U003,23000.00,2026-10-15,Door Window Sensor,security,INR
+RQ199,U004,7500.00,2026-09-28,Paragliding Lessons,leisure,ZAR
+RQ200,U005,5200000.00,2026-10-27,Phone Stand,electronics,IDR
+RQ201,U006,1850.00,2026-09-24,Desk Clock,office,USD
+RQ202,U007,950.00,2026-09-26,Spider Plant,pets,EUR
+RQ203,U008,16000.00,2026-10-06,Tea Kettle,home,INR
+RQ204,U009,5800.00,2026-09-27,Zip Lining Lessons,leisure,ZAR
+RQ205,U010,8500000.00,2026-10-25,Monitor Hood,electronics,IDR
+RQ206,U001,1650.00,2026-09-21,Desk Pad,office,USD
+RQ207,U002,760.00,2026-09-24,Snake Plant,pets,EUR
+RQ208,U003,18000.00,2026-10-13,Windows Lock,security,INR
+RQ209,U004,6400.00,2026-09-26,Bungee Jumping Lessons,leisure,ZAR
+RQ210,U005,4200000.00,2026-10-22,Keyboard Wrist Rest,electronics,IDR
+RQ211,U006,2450.00,2026-09-26,Desk Telephone,office,USD
+RQ212,U007,820.00,2026-09-28,Cactus Plant,pets,EUR
+RQ213,U008,25000.00,2026-10-14,Electric Stove,home,INR
+RQ214,U009,5100.00,2026-09-29,Abseiling Lessons,leisure,ZAR
+RQ215,U010,7200000.00,2026-10-28,Monitor Light Bar,electronics,IDR
+RQ216,U001,1350.00,2026-09-19,Desk Mat,office,USD
+RQ217,U002,690.00,2026-09-23,Fern Plant,pets,EUR
+RQ218,U003,20000.00,2026-10-17,Garage Security,security,INR
+RQ219,U004,7100.00,2026-09-25,Paragliding Lessons,leisure,ZAR
+RQ220,U005,5800000.00,2026-10-26,Phone Dongle,electronics,IDR
+RQ221,U006,2750.00,2026-09-27,Desk Humidifier,office,USD
+RQ222,U007,910.00,2026-09-27,Succulent Plant,pets,EUR
+RQ223,U008,17000.00,2026-10-04,Oven Mitts,home,INR
+RQ224,U009,5700.00,2026-09-28,Zip Lining Tour,leisure,ZAR
+RQ225,U010,9500000.00,2026-10-29,Monitor Privacy Filter,electronics,IDR
+RQ226,U001,2050.00,2026-09-23,Desk Air Purifier,office,USD
+RQ227,U002,840.00,2026-09-25,Aloe Plant,pets,EUR
+RQ228,U003,14000.00,2026-10-09,Perimeter Alarm,security,INR
+RQ229,U004,6900.00,2026-09-27,Bungee Jumping Tour,leisure,ZAR
+RQ230,U005,3800000.00,2026-10-21,USB Hub Hub,electronics,IDR
+RQ231,U006,1550.00,2026-09-20,Desk Essential Oil Diffuser,office,USD
+RQ232,U007,770.00,2026-09-24,Orchid Plant,pets,EUR
+RQ233,U008,21000.00,2026-10-11,Coffee Filters,home,INR
+RQ234,U009,5400.00,2026-09-26,Abseiling Tour,leisure,ZAR
+RQ235,U010,7800000.00,2026-10-24,Monitor Cable,electronics,IDR
+RQ236,U001,1250.00,2026-09-18,Desk Candles,office,USD
+RQ237,U002,620.00,2026-09-22,Bonsai Plant,pets,EUR
+RQ238,U003,24000.00,2026-10-16,Window Security Film,security,INR
+RQ239,U004,6200.00,2026-09-25,Paragliding Tour,leisure,ZAR
+RQ240,U005,4500000.00,2026-10-23,Phone Adapter,electronics,IDR
+RQ241,U006,2350.00,2026-09-25,Desk Essential,office,USD
+RQ242,U007,880.00,2026-09-26,Pothos Plant,pets,EUR
+RQ243,U008,19000.00,2026-10-07,Coffee Beans,home,INR
+RQ244,U009,6100.00,2026-09-30,Zip Lining Adventure,leisure,ZAR
+RQ245,U010,8200000.00,2026-10-27,Monitor Arm Mount,electronics,IDR
+RQ246,U001,1750.00,2026-09-22,Desk Plant,office,USD
+RQ247,U002,730.00,2026-09-24,Snake Plant Pot,pets,EUR
+RQ248,U003,15000.00,2026-10-12,Gate Alarm,security,INR
+RQ249,U004,5800.00,2026-09-24,Bungee Jump,leisure,ZAR
+RQ250,U005,6800000.00,2026-10-26,Keyboard Tray,electronics,IDR

@@ -1,0 +1,51 @@
+message_id,related_type,related_id,content,sent_date,priority
+M001,user,U001,User prefers to maintain high savings buffer,2026-09-10,normal
+M002,user,U002,Currently saving for emergency fund,2026-09-10,normal
+M003,user,U003,Planning for family wedding next month,2026-09-11,important
+M004,user,U004,Wants to minimize debt,2026-09-11,normal
+M005,user,U005,Comfortable with larger purchases,2026-09-11,normal
+M006,user,U006,Focused on long-term investments,2026-09-12,normal
+M007,user,U007,Prefers cash payments,2026-09-12,normal
+M008,user,U008,Recently got salary hike,2026-09-12,normal
+M009,user,U009,Cautious with spending,2026-09-12,normal
+M010,user,U010,High income earner,2026-09-12,normal
+M011,request,RQ001,Laptop needed for work-from-home setup,2026-09-12,important
+M012,request,RQ002,Kitchen renovation in progress,2026-09-12,normal
+M013,request,RQ003,Current phone broken, needs replacement urgently,2026-09-13,important
+M014,request,RQ004,Family vacation planned,2026-09-13,normal
+M015,request,RQ005,Gaming setup for birthday gift to son,2026-09-13,important
+M016,event,E002,Rent increase effective this month,2026-09-11,important
+M017,event,E007,Rent payment reminder,2026-09-12,normal
+M018,event,E011,Loan EMI reminder,2026-09-12,important
+M019,event,E016,Rent due date approaching,2026-09-12,normal
+M020,event,E020,Loan payment confirmation received,2026-09-12,normal
+M021,user,U001,Received bonus last month,2026-09-10,important
+M022,user,U002,Waiting for tax refund,2026-09-11,normal
+M023,user,U003,Additional freelance income expected,2026-09-11,normal
+M024,user,U004,Annual bonus received,2026-09-11,important
+M025,user,U005,Stock dividends received,2026-09-11,normal
+M026,request,RQ006,Books for professional development,2026-09-13,normal
+M027,request,RQ007,Anniversary dinner planned,2026-09-13,important
+M028,request,RQ008,Old tablet not working properly,2026-09-13,important
+M029,request,RQ009,Concert tickets for favorite band,2026-09-13,normal
+M030,request,RQ010,Home theater for movie nights,2026-09-13,normal
+M031,event,E024,Rent payment confirmed,2026-09-13,normal
+M032,event,E028,Grocery bill higher than usual,2026-09-13,normal
+M033,event,E032,Loan interest rate reduced,2026-09-13,important
+M034,event,E036,New apartment rent started,2026-09-13,normal
+M035,event,E040,Loan consolidation completed,2026-09-13,important
+M036,user,U006,Received freelance payment,2026-09-13,important
+M037,user,U007,Selling old car,2026-09-13,normal
+M038,user,U008,Promotion received,2026-09-13,important
+M039,user,U009,Received gift from parent,2026-09-13,normal
+M040,user,U010,Crypto investment matured,2026-09-13,important
+M041,request,RQ011,Gym membership for health,2026-09-14,normal
+M042,request,RQ012,Replacing old dinner set,2026-09-14,normal
+M043,request,RQ013,Need laptop for college,2026-09-14,important
+M044,request,RQ014,Holiday with family,2026-09-14,important
+M045,request,RQ015,VR for gaming enthusiast,2026-09-14,normal
+M046,event,E044,Medical bill paid,2026-09-14,normal
+M047,event,E048,Electricity bill reduction,2026-09-14,important
+M048,event,E052,Transportation cost reduced,2026-09-14,normal
+M049,event,E056,Water bill normal this month,2026-09-14,normal
+M050,event,E060,Internet bill discount received,2026-09-14,important

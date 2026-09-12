@@ -1,0 +1,78 @@
+image_id,related_event_id,amount,type,file_path,description,verified
+IM001,E002,1200.00,rent_receipt,images/rent_e002.pdf,Monthly rent receipt for September 2026,true
+IM002,E003,200.00,utility_bill,images/utilities_e003.pdf,Electricity and water bill, true
+IM003,E004,400.00,shopping_receipt,images/groceries_e004.pdf,Weekly grocery shopping, true
+IM004,E005,150.00,subscription,images/entertainment_e005.pdf,Netflix and Spotify subscription, true
+IM005,E007,900.00,rent_receipt,images/rent_e007.pdf,Monthly rent for apartment, true
+IM006,E008,350.00,shopping_receipt,images/groceries_e008.pdf,Weekly grocery shopping, true
+IM007,E009,100.00,metro_pass,images/transport_e009.pdf,Monthly metro pass, true
+IM008,E011,8000.00,loan_statement,images/loan_e011.pdf,Personal loan EMI statement, true
+IM009,E012,1500.00,utility_bill,images/utilities_e012.pdf,Monthly utility bills, true
+IM010,E013,3000.00,shopping_receipt,images/groceries_e013.pdf,Weekly grocery shopping, true
+IM011,E014,2000.00,entertainment,images/entertainment_e014.pdf,Movie tickets and dining, true
+IM012,E016,4000.00,rent_receipt,images/rent_e016.pdf,Annual rent receipt, true
+IM013,E017,800.00,utility_bill,images/utilities_e017.pdf,Electricity bill, true
+IM014,E018,1500.00,shopping_receipt,images/groceries_e018.pdf,Shopping receipt, true
+IM015,E020,5000000.00,loan_statement,images/loan_e020.pdf,Business loan EMI, true
+IM016,E021,500000.00,utility_bill,images/utilities_e021.pdf,Monthly utility bill, true
+IM017,E022,2000000.00,shopping_receipt,images/groceries_e022.pdf,Large grocery order, true
+IM018,E023,8000.00,payslip,images/salary_e023.pdf,September salary slip, true
+IM019,E024,2000.00,rent_receipt,images/rent_e024.pdf,Monthly rent, true
+IM020,E025,300.00,utility_bill,images/utilities_e025.pdf,Utility bills, true
+IM021,E026,500.00,shopping_receipt,images/groceries_e026.pdf,Weekly groceries, true
+IM022,E027,5000.00,payslip,images/salary_e027.pdf,Net salary for September, true
+IM023,E028,1200.00,rent_receipt,images/rent_e028.pdf,Apartment rent, true
+IM024,E029,250.00,utility_bill,images/utilities_e029.pdf,Electricity and water, true
+IM025,E030,400.00,shopping_receipt,images/groceries_e030.pdf,Grocery shopping, true
+IM026,E031,90000.00,payslip,images/salary_e031.pdf,October salary, true
+IM027,E032,12000.00,loan_statement,images/loan_e032.pdf,Auto loan EMI, true
+IM028,E033,2000.00,utility_bill,images/utilities_e033.pdf,Utility bills, true
+IM029,E034,5000.00,shopping_receipt,images/groceries_e034.pdf,Supermarket receipt, true
+IM030,E035,18000.00,payslip,images/salary_e035.pdf,Monthly salary, true
+IM031,E036,5000.00,rent_receipt,images/rent_e036.pdf,Rent payment, true
+IM032,E037,1000.00,utility_bill,images/utilities_e037.pdf,Utility bills, true
+IM033,E038,2000.00,shopping_receipt,images/groceries_e038.pdf,Weekly shopping, true
+IM034,E039,30000000.00,payslip,images/salary_e039.pdf,Executive salary, true
+IM035,E040,8000000.00,loan_statement,images/loan_e040.pdf,Commercial loan, true
+IM036,E041,800000.00,utility_bill,images/utilities_e041.pdf,Corporate utility, true
+IM037,E042,3000000.00,shopping_receipt,images/groceries_e042.pdf,Large purchase, true
+IM038,E043,5000.00,payslip,images/salary_e043.pdf,Net salary, true
+IM039,E044,1500.00,rent_receipt,images/rent_e044.pdf,Monthly rent, true
+IM040,E045,250.00,utility_bill,images/utilities_e045.pdf,Utilities, true
+IM041,E046,350.00,shopping_receipt,images/groceries_e046.pdf,Groceries, true
+IM042,E047,4000.00,payslip,images/salary_e047.pdf,Salary credit, true
+IM043,E048,1000.00,rent_receipt,images/rent_e048.pdf,Rent, true
+IM044,E049,200.00,utility_bill,images/utilities_e049.pdf,utilities, true
+IM045,E050,300.00,shopping_receipt,images/groceries_e050.pdf,Weekly groceries, true
+IM046,E051,75000.00,payslip,images/salary_e051.pdf,Salary, true
+IM047,E052,10000.00,loan_statement,images/loan_e052.pdf,Personal loan, true
+IM048,E053,1800.00,utility_bill,images/utilities_e053.pdf,Utilities, true
+IM049,E054,4000.00,shopping_receipt,images/groceries_e054.pdf,Groceries, true
+IM050,E055,15000.00,payslip,images/salary_e055.pdf,Salary, true
+IM051,E056,4500.00,rent_receipt,images/rent_e056.pdf,Rent, true
+IM052,E057,900.00,utility_bill,images/utilities_e057.pdf,Utilities, true
+IM053,E058,1800.00,shopping_receipt,images/groceries_e058.pdf,Groceries, true
+IM054,E059,25000000.00,payslip,images/salary_e059.pdf,Business income, true
+IM055,E060,6000000.00,loan_statement,images/loan_e060.pdf,Equipment loan, true
+IM056,E061,700000.00,utility_bill,images/utilities_e061.pdf,Utilities, true
+IM057,E062,2500000.00,shopping_receipt,images/groceries_e062.pdf,Supplies, true
+IM058,E063,5500.00,payslip,images/salary_e063.pdf,Salary, true
+IM059,E064,1300.00,rent_receipt,images/rent_e064.pdf,Rent, true
+IM060,E065,220.00,utility_bill,images/utilities_e065.pdf,Utilities, true
+IM061,E066,400.00,shopping_receipt,images/groceries_e066.pdf,Groceries, true
+IM062,E067,4500.00,payslip,images/salary_e067.pdf,Salary, true
+IM063,E068,1100.00,rent_receipt,images/rent_e068.pdf,Rent, true
+IM064,E069,230.00,utility_bill,images/utilities_e069.pdf,Utilities, true
+IM065,E070,380.00,shopping_receipt,images/groceries_e070.pdf,Groceries, true
+IM066,E071,80000.00,payslip,images/salary_e071.pdf,Salary, true
+IM067,E072,11000.00,loan_statement,images/loan_e072.pdf,Education loan, true
+IM068,E073,1900.00,utility_bill,images/utilities_e073.pdf,Utilities, true
+IM069,E074,4500.00,shopping_receipt,images/groceries_e074.pdf,Groceries, true
+IM070,E075,16000.00,payslip,images/salary_e075.pdf,Salary, true
+IM071,E076,4200.00,rent_receipt,images/rent_e076.pdf,Rent, true
+IM072,E077,950.00,utility_bill,images/utilities_e077.pdf,Utilities, true
+IM073,E078,1900.00,shopping_receipt,images/groceries_e078.pdf,Groceries, true
+IM074,E079,28000000.00,payslip,images/salary_e079.pdf,Income, true
+IM075,E080,7000000.00,loan_statement,images/loan_e080.pdf,Investment loan, true
+IM076,E081,600000.00,utility_bill,images/utilities_e081.pdf,Utilities, true
+IM077,E082,2800000.00,shopping_receipt,images/groceries_e082.pdf,Supplies, true

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy or Wait - Financial Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <span class="logo-text">Buy or Wait</span>
+        </div>
+        <button class="nav-toggle" id="navToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-page="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-page="requests">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span>Requests</span>
+          <span class="badge" id="requestCount">0</span>
+        </a>
+        <a href="#" class="nav-item" data-page="analysis">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+          <span>Analysis</span>
+        </a>
+        <a href="#" class="nav-item" data-page="export">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Export CSV</span>
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="status-indicator">
+          <span class="status-dot" id="statusDot"></span>
+          <span class="status-text" id="statusText">Loading...</span>
+        </div>
+        <div class="api-info">
+          <small>Free APIs: exchangerate-api</small>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Page -->
+      <section class="page active" id="page-dashboard">
+        <header class="page-header">
+          <div class="header-content">
+            <h1>Financial Dashboard</h1>
+            <p class="subtitle">Real-time analysis of buy vs wait decisions</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="refreshBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 4v6h-6M1 20v-6h6"/>
+                <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+              </svg>
+              Refresh
+            </button>
+          </div>
+        </header>
+        
+        <div class="stats-grid" id="statsGrid">
+          <!-- Stats cards will be rendered here -->
+        </div>
+        
+        <div class="charts-row">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Affordability Distribution</h3>
+              <span class="chart-type">Donut</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="affordabilityChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Payment Method Recommendations</h3>
+              <span class="chart-type">Bar</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="paymentMethodChart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <div class="charts-row">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Safe Amount by Currency</h3>
+              <span class="chart-type">Bar</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="currencyChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>User-wise Analysis</h3>
+              <span class="chart-type">Horizontal Bar</span>
+            </div>
+            <div class="chart-container chart-container-lg">
+              <canvas id="userChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Requests Page -->
+      <section class="page" id="page-requests">
+        <header class="page-header">
+          <div class="header-content">
+            <h1>All Requests</h1>
+            <p class="subtitle">Detailed analysis for each purchase request</p>
+          </div>
+          <div class="header-actions">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+              </svg>
+              <input type="text" id="searchInput" placeholder="Search by request ID, item, or user...">
+            </div>
+            <select id="filterStatus" class="filter-select">
+              <option value="all">All Statuses</option>
+              <option value="affordable_now">Affordable Now</option>
+              <option value="affordable_with_plan">With Plan</option>
+              <option value="affordable_later">Later</option>
+              <option value="not_affordable">Not Affordable</option>
+            </select>
+            <select id="filterMethod" class="filter-select">
+              <option value="all">All Methods</option>
+              <option value="full_payment">Full Payment</option>
+              <option value="partial_payment">Partial Payment</option>
+              <option value="installments">Installments</option>
+              <option value="wait">Wait</option>
+              <option value="not_recommended">Not Recommended</option>
+            </select>
+          </div>
+        </header>
+        
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="sortable" data-sort="request_id">Request ID</th>
+                <th class="sortable" data-sort="user_id">User</th>
+                <th class="sortable" data-sort="item">Item</th>
+                <th class="sortable" data-sort="amount">Amount</th>
+                <th>Status</th>
+                <th>Method</th>
+                <th class="sortable" data-sort="safe_amount">Safe to Pay</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="requestsTableBody">
+              <!-- Rows rendered here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+      <!-- Analysis Page -->
+      <section class="page" id="page-analysis">
+        <header class="page-header">
+          <div class="header-content">
+            <h1>Request Analysis</h1>
+            <p class="subtitle">Deep dive into individual decision reasoning</p>
+          </div>
+          <div class="header-actions">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+              </svg>
+              <input type="text" id="analysisSearch" placeholder="Search request ID...">
+            </div>
+          </div>
+        </header>
+        
+        <div class="analysis-container" id="analysisContainer">
+          <!-- Analysis cards rendered here -->
+        </div>
+      </section>
+      
+      <!-- Export Page -->
+      <section class="page" id="page-export">
+        <header class="page-header">
+          <div class="header-content">
+            <h1>Export Results</h1>
+            <p class="subtitle">Download predictions in CSV format</p>
+          </div>
+        </header>
+        
+        <div class="export-container">
+          <div class="export-card">
+            <div class="export-preview">
+              <h3>Preview of output.csv</h3>
+              <div class="preview-table" id="previewTable">
+                <!-- Preview rendered here -->
+              </div>
+              <p class="preview-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+                This CSV follows the exact format required for HackerRank submission.
+              </p>
+            </div>
+            
+            <div class="export-actions">
+              <button class="btn btn-primary btn-lg" id="downloadBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download output.csv
+              </button>
+              
+              <div class="export-info">
+                <div class="info-item">
+                  <span class="info-label">Total Requests</span>
+                  <span class="info-value" id="exportCount">0</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Columns</span>
+                  <span class="info-value">7 (required)</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Format</span>
+                  <span class="info-value">CSV</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="export-details">
+            <h3>Required CSV Columns</h3>
+            <div class="details-grid">
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">1</span>
+                  <code>request_id</code>
+                </div>
+                <p class="detail-desc">The request being answered</p>
+              </div>
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">2</span>
+                  <code>amount_safe_to_pay</code>
+                </div>
+                <p class="detail-desc">Largest amount safe to pay (0 <= x <= requested)</p>
+              </div>
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">3</span>
+                  <code>affordability_status</code>
+                </div>
+                <p class="detail-desc">affordable_now | affordable_with_plan | affordable_later | not_affordable</p>
+              </div>
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">4</span>
+                  <code>recommended_payment_method</code>
+                </div>
+                <p class="detail-desc">full_payment | partial_payment | installments | wait | not_recommended</p>
+              </div>
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">5</span>
+                  <code>payment_plan</code>
+                </div>
+                <p class="detail-desc">Chronological <YYYY-MM-DD>:<amount> entries joined by |</p>
+              </div>
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">6</span>
+                  <code>earliest_date_for_full_payment</code>
+                </div>
+                <p class="detail-desc">Earliest date full amount is safe; empty if never</p>
+              </div>
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">7</span>
+                  <code>spending_changes_needed</code>
+                </div>
+                <p class="detail-desc">Up to 3 stop:/reduce_to: changes joined by |</p>
+              </div>
+              <div class="detail-card">
+                <div class="detail-header">
+                  <span class="column-badge">8</span>
+                  <code>decision_explanation</code>
+                </div>
+                <p class="detail-desc">Short explanation and financial facts</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <!-- Modal for detailed view -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Request Details</h2>
+        <button class="modal-close" id="modalClose">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Modal content -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

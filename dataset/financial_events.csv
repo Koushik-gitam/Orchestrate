@@ -1,0 +1,83 @@
+event_id,user_id,type,amount,date,status,flexible,recurring
+E001,U001,salary,4500.00,2026-09-17,confirmed,false,false
+E002,U001,rent,1200.00,2026-09-13,pending,false,true
+E003,U001,utilities,200.00,2026-09-14,recurring,false,true
+E004,U001,groceries,400.00,2026-09-15,recurring,true,true
+E005,U001,entertainment,150.00,2026-09-16,recurring,true,true
+E006,U002,salary,3200.00,2026-09-22,confirmed,false,false
+E007,U002,rent,900.00,2026-09-13,pending,false,true
+E008,U002,groceries,350.00,2026-09-15,recurring,true,true
+E009,U002,transport,100.00,2026-09-16,recurring,true,true
+E010,U003,salary,65000.00,2026-09-19,confirmed,false,false
+E011,U003,loan EMI,8000.00,2026-09-13,pending,false,true
+E012,U003,utilities,1500.00,2026-09-14,recurring,false,true
+E013,U003,groceries,3000.00,2026-09-15,recurring,true,true
+E014,U003,entertainment,2000.00,2026-09-16,recurring,true,true
+E015,U004,salary,12000.00,2026-09-25,confirmed,false,false
+E016,U004,rent,4000.00,2026-09-13,pending,false,true
+E017,U004,utilities,800.00,2026-09-14,recurring,false,true
+E018,U004,groceries,1500.00,2026-09-15,recurring,true,true
+E019,U005,salary,20000000.00,2026-09-27,confirmed,false,false
+E020,U005,loan EMI,5000000.00,2026-09-13,pending,false,true
+E021,U005,utilities,500000.00,2026-09-14,recurring,false,true
+E022,U005,groceries,2000000.00,2026-09-15,recurring,true,true
+E023,U006,salary,8000.00,2026-09-20,confirmed,false,false
+E024,U006,rent,2000.00,2026-09-13,pending,false,true
+E025,U006,utilities,300.00,2026-09-14,recurring,false,true
+E026,U006,groceries,500.00,2026-09-15,recurring,true,true
+E027,U007,salary,5000.00,2026-09-21,confirmed,false,false
+E028,U007,rent,1200.00,2026-09-13,pending,false,true
+E029,U007,utilities,250.00,2026-09-14,recurring,false,true
+E030,U007,groceries,400.00,2026-09-15,recurring,true,true
+E031,U008,salary,90000.00,2026-09-23,confirmed,false,false
+E032,U008,loan EMI,12000.00,2026-09-13,pending,false,true
+E033,U008,utilities,2000.00,2026-09-14,recurring,false,true
+E034,U008,groceries,5000.00,2026-09-15,recurring,true,true
+E035,U009,salary,18000.00,2026-09-24,confirmed,false,false
+E036,U009,rent,5000.00,2026-09-13,pending,false,true
+E037,U009,utilities,1000.00,2026-09-14,recurring,false,true
+E038,U009,groceries,2000.00,2026-09-15,recurring,true,true
+E039,U010,salary,30000000.00,2026-09-28,confirmed,false,false
+E040,U010,loan EMI,8000000.00,2026-09-13,pending,false,true
+E041,U010,utilities,800000.00,2026-09-14,recurring,false,true
+E042,U010,groceries,3000000.00,2026-09-15,recurring,true,true
+E043,U011,salary,5000.00,2026-09-18,confirmed,false,false
+E044,U011,rent,1500.00,2026-09-13,pending,false,true
+E045,U011,utilities,250.00,2026-09-14,recurring,false,true
+E046,U011,groceries,350.00,2026-09-15,recurring,true,true
+E047,U012,salary,4000.00,2026-09-26,confirmed,false,false
+E048,U012,rent,1000.00,2026-09-13,pending,false,true
+E049,U012,utilities,200.00,2026-09-14,recurring,false,true
+E050,U012,groceries,300.00,2026-09-15,recurring,true,true
+E051,U013,salary,75000.00,2026-09-22,confirmed,false,false
+E052,U013,loan EMI,10000.00,2026-09-13,pending,false,true
+E053,U013,utilities,1800.00,2026-09-14,recurring,false,true
+E054,U013,groceries,4000.00,2026-09-15,recurring,true,true
+E055,U014,salary,15000.00,2026-09-25,confirmed,false,false
+E056,U014,rent,4500.00,2026-09-13,pending,false,true
+E057,U014,utilities,900.00,2026-09-14,recurring,false,true
+E058,U014,groceries,1800.00,2026-09-15,recurring,true,true
+E059,U015,salary,25000000.00,2026-09-27,confirmed,false,false
+E060,U015,loan EMI,6000000.00,2026-09-13,pending,false,true
+E061,U015,utilities,700000.00,2026-09-14,recurring,false,true
+E062,U015,groceries,2500000.00,2026-09-15,recurring,true,true
+E063,U016,salary,5500.00,2026-09-19,confirmed,false,false
+E064,U016,rent,1300.00,2026-09-13,pending,false,true
+E065,U016,utilities,220.00,2026-09-14,recurring,false,true
+E066,U016,groceries,400.00,2026-09-15,recurring,true,true
+E067,U017,salary,4500.00,2026-09-21,confirmed,false,false
+E068,U017,rent,1100.00,2026-09-13,pending,false,true
+E069,U017,utilities,230.00,2026-09-14,recurring,false,true
+E070,U017,groceries,380.00,2026-09-15,recurring,true,true
+E071,U018,salary,80000.00,2026-09-23,confirmed,false,false
+E072,U018,loan EMI,11000.00,2026-09-13,pending,false,true
+E073,U018,utilities,1900.00,2026-09-14,recurring,false,true
+E074,U018,groceries,4500.00,2026-09-15,recurring,true,true
+E075,U019,salary,16000.00,2026-09-24,confirmed,false,false
+E076,U019,rent,4200.00,2026-09-13,pending,false,true
+E077,U019,utilities,950.00,2026-09-14,recurring,false,true
+E078,U019,groceries,1900.00,2026-09-15,recurring,true,true
+E079,U020,salary,28000000.00,2026-09-28,confirmed,false,false
+E080,U020,loan EMI,7000000.00,2026-09-13,pending,false,true
+E081,U020,utilities,600000.00,2026-09-14,recurring,false,true
+E082,U020,groceries,2800000.00,2026-09-15,recurring,true,true

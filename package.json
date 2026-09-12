@@ -1,0 +1,22 @@
+{
+  "name": "buy-or-wait-solution",
+  "version": "1.0.0",
+  "description": "Buy or Wait - AI Financial Agent for HackerRank Orchestrate September 2026",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "cors": "^2.8.6",
+    "csv-parser": "^3.2.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "uuid": "^14.0.2"
+  }
+}
