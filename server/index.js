@@ -11,7 +11,10 @@ const csv = require('csv-parser');
 const axios = require('axios');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+// Vercel serverless configuration
+const isVercel = process.env.VERCEL === '1';
+const PORT = process.env.PORT || (isVercel ? 3000 : 3000);
 const HOST = process.env.HOST || '0.0.0.0';
 
 // Middleware
@@ -909,4 +912,12 @@ async function startServer() {
 
 startServer();
 
+// Export for Vercel serverless
 module.exports = app;
+module.exports.handler = async (req, res) => {
+  // Ensure data is loaded before handling request
+  if (!serverStarted) {
+    await startServer();
+  }
+  return app(req, res);
+};
