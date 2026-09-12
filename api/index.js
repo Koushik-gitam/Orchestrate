@@ -924,6 +924,15 @@ module.exports.handler = async function(req, res) {
     await startServer();
   }
   
+  // Wait for data to be ready
+  if (!financialData) {
+    // Data is still loading, return loading status
+    res.statusCode = 503;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ status: 'loading', message: 'Data loading...' }));
+    return Promise.resolve();
+  }
+  
   // Set Vercel-specific headers
   res.setHeader('X-Vercel-Edge', 'true');
   
