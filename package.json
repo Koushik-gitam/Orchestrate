@@ -2,10 +2,11 @@
   "name": "buy-or-wait-solution",
   "version": "1.0.0",
   "description": "Buy or Wait - AI Financial Agent for HackerRank Orchestrate September 2026",
-  "main": "server/index.js",
+  "main": "api/index.js",
   "scripts": {
     "start": "node server/index.js",
     "dev": "node server/index.js",
+    "vercel": "node api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
