@@ -23,7 +23,7 @@ app.use(express.json({ limit: '10mb' }));
 
 // Serve static files from public directory (for non-Vercel deployments)
 const publicPath = path.join(__dirname, '..', 'public');
-if (!isVercel && fs.existsSync(publicPath)) {
+if (fs.existsSync(publicPath)) {
   app.use(express.static(publicPath));
 }
 
@@ -61,7 +61,12 @@ function loadCSVData() {
         .on('end', () => {
           results[file.replace('.csv', '')] = data;
           loaded++;
-          if (loaded === files.length) resolve(results);
+          if (loaded === files.length) {
+        // Normalize keys: strip 'financial_' prefix for compatibility
+        results.profiles = results.financial_profiles || [];
+        results.events = results.financial_events || [];
+        resolve(results);
+      }
         });
     });
   });
@@ -912,6 +917,12 @@ async function startServer() {
   }
 }
 
+// Catch-all: serve index.html for SPA routing
+if (fs.existsSync(publicPath)) {
+  app.use((req, res, next) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+  });
+}
 startServer();
 
 // Export for Vercel serverless

@@ -1,7 +1,7 @@
 services:
   - type: web
     name: buy-or-wait-solution
-    env: node
+    runtime: node
     buildCommand: npm install
     startCommand: node server/index.js
     envVars:
@@ -9,3 +9,4 @@ services:
         value: production
       - key: PORT
         value: 10000
+    autoDeploy: true

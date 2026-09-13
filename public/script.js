@@ -133,6 +133,62 @@ class BuyOrWaitApp {
     document.querySelectorAll('.graphical-mode-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.mode === mode);
     });
+    
+    // Show/hide chart rows based on mode
+    const row2 = document.getElementById('row2');
+    const row3 = document.getElementById('row3');
+    const row4 = document.getElementById('row4');
+    const donutCard = document.getElementById('chart-card-donut');
+    const paymentCard = document.getElementById('chart-card-payment');
+    const currencyCard = document.getElementById('chart-card-currency');
+    const categoryCard = document.getElementById('chart-card-category');
+    
+    // Default: hide special rows
+    if (row3) row3.style.display = 'none';
+    if (row4) row4.style.display = 'none';
+    
+    // Show/hide cards based on mode
+    switch (mode) {
+      case 'charts':
+        // Show everything: donut + payment (row1), currency + category (row2)
+        if (donutCard) donutCard.style.display = '';
+        if (paymentCard) paymentCard.style.display = '';
+        if (row2) row2.style.display = '';
+        if (currencyCard) currencyCard.style.display = '';
+        if (categoryCard) categoryCard.style.display = '';
+        break;
+      case 'donut':
+        // Show only donut chart
+        if (donutCard) donutCard.style.display = '';
+        if (paymentCard) paymentCard.style.display = 'none';
+        if (row2) row2.style.display = 'none';
+        break;
+      case 'bar':
+        // Show bar charts: currency + category
+        if (donutCard) donutCard.style.display = 'none';
+        if (paymentCard) paymentCard.style.display = 'none';
+        if (row2) row2.style.display = '';
+        if (currencyCard) currencyCard.style.display = '';
+        if (categoryCard) categoryCard.style.display = '';
+        break;
+      case 'line':
+        // Show trend chart (row3)
+        if (donutCard) donutCard.style.display = 'none';
+        if (paymentCard) paymentCard.style.display = 'none';
+        if (row2) row2.style.display = 'none';
+        if (row3) row3.style.display = '';
+        break;
+      case 'heatmap':
+        // Show heatmap chart (row4)
+        if (donutCard) donutCard.style.display = 'none';
+        if (paymentCard) paymentCard.style.display = 'none';
+        if (row2) row2.style.display = 'none';
+        if (row4) row4.style.display = '';
+        break;
+    }
+    
+    // Re-initialize charts for the new mode if needed
+    this.initCharts();
     this.updateCharts();
   }
   
@@ -337,7 +393,8 @@ class BuyOrWaitApp {
       </div>
     `).join('');
     
-    // Update charts
+    // Initialize and update charts
+    this.initCharts();
     this.updateCharts();
   }
   
@@ -352,7 +409,6 @@ class BuyOrWaitApp {
   
   updateCharts() {
     if (!this.stats) {
-      this.initCharts();
       return;
     }
     
@@ -373,7 +429,7 @@ class BuyOrWaitApp {
       this.updateTrendChart();
     }
     
-    if (mode === 'heatmap' || mode === 'comparison') {
+    if (mode === 'heatmap') {
       this.updateHeatmapChart();
     }
     
@@ -562,6 +618,10 @@ class BuyOrWaitApp {
     containers.forEach((container, idx) => {
       const canvas = document.getElementById(container.id);
       if (!canvas) return;
+      // Skip hidden canvases - Chart.js can't render on display:none
+      if (canvas.offsetParent === null && !canvas.closest('.charts-row')) return;
+      const parentRow = canvas.closest('.charts-row');
+      if (parentRow && parentRow.style.display === 'none') return;
       
       const ctx = canvas.getContext('2d');
       
